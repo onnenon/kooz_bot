@@ -15,7 +15,6 @@ export default class RaiderIOCharacterRepo implements CharacterRepo {
 
       if (charDTO) return CharacterMapper.mapDTOtoICharacter(charDTO);
     } catch (err) {
-      console.log('Failed to fetch character');
       return undefined;
     }
   }
