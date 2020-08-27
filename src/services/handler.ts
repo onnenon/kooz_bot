@@ -36,7 +36,7 @@ export default class HandlerService {
 
     if (splitMessage.length < 2 || splitMessage.length > 3) {
       console.log(splitMessage);
-      return 'Invalid command';
+      return 'Invalid Info command, for correct usage type #help';
     }
 
     const character = await this.characterRepo.getCharacter(

@@ -13,5 +13,7 @@ export default class CharacterInfoEmbed extends BaseEmbed {
       { name: 'Active Spec', value: character.activeSpec, inline: true },
       { name: 'Realm', value: character.realm, inline: true }
     );
+
+    this.addField('\u200B', '\u200B');
   }
 }

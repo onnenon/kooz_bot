@@ -13,5 +13,18 @@ export default class KoozBot {
     this.client = new Discord.Client();
     this.characterRepo = characterRepo;
     this.handlerService = new HandlerService(this.characterRepo);
+
+    this.client.on('ready', () => {
+      console.log('Ready');
+    });
+
+    this.client.on('message', async (message) => {
+      if (message.content.startsWith(KoozBot.prefix)) {
+        const response = await this.handlerService.handleMessage(
+          message.content
+        );
+        if (response) message.channel.send(response);
+      }
+    });
   }
 }
