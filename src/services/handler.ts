@@ -1,8 +1,8 @@
 import { MessageEmbed } from 'discord.js';
 import CharacterRepo from '../common/repos/character';
 import EmbedService from './embed';
-import { IKoozBot } from '../common/interfaces/bot';
-import { RaiderIoTypes } from '../RaiderIO/types';
+import { IKoozBot } from '../common/types/bot';
+import { WowTypes } from '../common/types/wow';
 
 export default class HandlerService {
   characterRepo: CharacterRepo;
@@ -32,19 +32,21 @@ export default class HandlerService {
   ): Promise<MessageEmbed | string> {
     const name = splitMessage[0];
     const realm = splitMessage[1];
-    const region = splitMessage[2] || RaiderIoTypes.Region.US;
+    const region = splitMessage[2] || WowTypes.Regions.US;
 
     if (splitMessage.length < 2 || splitMessage.length > 3) {
       console.log(splitMessage);
-      return "Invalid command"
+      return 'Invalid command';
     }
 
     const character = await this.characterRepo.getCharacter(
-      name, realm, region
+      name,
+      realm,
+      region
     );
 
     if (!character) {
-      return "No character returned with given name. Check your spelling and try again."
+      return 'No character returned with given name. Check your spelling and try again.';
     }
 
     return EmbedService.getCharacterInfoEmbed(character);

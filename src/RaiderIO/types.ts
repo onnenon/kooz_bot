@@ -1,3 +1,5 @@
+import { WowTypes } from '../common/types/wow';
+
 export namespace RaiderIoTypes {
   export interface CharacterDTO {
     name: string;
@@ -10,19 +12,13 @@ export namespace RaiderIoTypes {
     achievement_points: number;
     honorable_kills: number;
     thumbnail_url: string;
-    region: Region;
+    region: Regions;
     realm: string;
     profile_url: string;
     profile_banner: string;
   }
 
-  export enum Region {
-    US = 'us',
-    EU = 'eu',
-    TW = 'tw',
-    KR = 'kr',
-    CN = 'cn',
-  }
+  export type Regions = WowTypes.Regions;
 
   export enum CharacterFields {
     gear = 'gear',

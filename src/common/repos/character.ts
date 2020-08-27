@@ -1,4 +1,4 @@
-import { ICharacter } from '../interfaces/character';
+import { ICharacter } from '../types/character';
 
 export default abstract class CharacterRepo {
   abstract async getCharacter(
