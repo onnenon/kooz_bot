@@ -1,4 +1,4 @@
-export namespace RaiderIO {
+export namespace RaiderIoTypes {
   export interface CharacterDTO {
     name: string;
     race: string;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RaiderIO } from '../interfaces';
+import { RaiderIoTypes } from '../types';
 
 export default class CharacterAPI {
   static baseURL = `https://raider.io/api/v1/characters/profile/`;
@@ -7,9 +7,9 @@ export default class CharacterAPI {
   static async getCharacter(
     name: string,
     realm: string,
-    region = RaiderIO.Region.US,
-    fields?: RaiderIO.CharacterFields[]
-  ): Promise<RaiderIO.CharacterDTO> {
+    region = RaiderIoTypes.Region.US,
+    fields?: RaiderIoTypes.CharacterFields[]
+  ): Promise<RaiderIoTypes.CharacterDTO> {
     let url = `${CharacterAPI.baseURL}?region=${region}&realm=${realm}&name=${name}`;
 
     if (fields) {
