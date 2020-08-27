@@ -10,13 +10,12 @@ export default class CharacterAPI {
     region = RaiderIO.Region.US,
     fields?: RaiderIO.CharacterFields[]
   ): Promise<RaiderIO.CharacterDTO> {
-    let url = `${CharacterAPI.baseURL}&region=${region}&realm=${realm}&name=${name}`;
+    let url = `${CharacterAPI.baseURL}?region=${region}&realm=${realm}&name=${name}`;
 
     if (fields) {
       url = url + `&fields=${fields.join()}`;
     }
     const response = await axios.get(url);
-    console.log(response.data);
 
     return response.data;
   }
