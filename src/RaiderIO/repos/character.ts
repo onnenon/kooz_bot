@@ -9,9 +9,14 @@ export default class RaiderIOCharacterRepo implements CharacterRepo {
     name: string,
     realm: string,
     region: RaiderIO.Region
-  ): Promise<ICharacter> {
-    const charDTO = await CharacterAPI.getCharacter(name, realm, region);
+  ): Promise<ICharacter | undefined> {
+    try {
+      const charDTO = await CharacterAPI.getCharacter(name, realm, region);
 
-    return CharacterMapper.mapDTOtoICharacter(charDTO);
+      if (charDTO) return CharacterMapper.mapDTOtoICharacter(charDTO);
+    } catch (err) {
+      console.log('Failed to fetch character');
+      return undefined;
+    }
   }
 }

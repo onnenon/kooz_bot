@@ -5,5 +5,5 @@ export default abstract class CharacterRepo {
     name: string,
     realm: string,
     region: string
-  ): Promise<ICharacter>;
+  ): Promise<ICharacter | undefined>;
 }

@@ -15,6 +15,7 @@ export default class CharacterAPI {
     if (fields) {
       url = url + `&fields=${fields.join()}`;
     }
+
     const response = await axios.get(url);
 
     return response.data;

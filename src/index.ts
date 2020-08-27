@@ -15,8 +15,8 @@ bot.client.on('ready', () => {
 
 bot.client.on('message', async (message) => {
   if (message.content.startsWith(KoozBot.prefix)) {
-    const embed = await bot.handlerService.handleMessage(message.content);
-    message.channel.send(embed);
+    const response = await bot.handlerService.handleMessage(message.content);
+    if (response) message.channel.send(response);
   }
 });
 

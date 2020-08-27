@@ -1,5 +1,7 @@
 import { MessageEmbed } from 'discord.js';
 import CharacterRepo from '../common/repos/character';
+import EmbedService from './embed';
+import { IKoozBot } from '../common/interfaces/bot';
 
 export default class HandlerService {
   characterRepo: CharacterRepo;
@@ -8,19 +10,35 @@ export default class HandlerService {
     this.characterRepo = characterRepo;
   }
 
-  public async handleMessage(message: string): Promise<MessageEmbed | string> {
-    const embed = new MessageEmbed();
+  public async handleMessage(
+    message: Readonly<string>
+  ): Promise<MessageEmbed | string | undefined> {
+    const splitMessage = message.split(' ');
+    const command = splitMessage.shift();
 
-    embed.addField('message', message);
+    switch (command) {
+      case IKoozBot.command.INFO:
+        return this.handleInfo(splitMessage);
+      case IKoozBot.command.HELP:
+        return this.handleHelp();
+      default:
+        return `Command: **${command}** is invalid, for a list of commands type: **#help**`;
+    }
+  }
 
+  public async handleInfo(
+    splitMessage: Readonly<string[]>
+  ): Promise<MessageEmbed | undefined> {
     const character = await this.characterRepo.getCharacter(
-      'koozie',
-      'shattered-hand',
-      'us'
+      splitMessage[0],
+      splitMessage[1],
+      splitMessage[2]
     );
 
-    embed.addField('name', character.name);
+    return character && EmbedService.getCharacterInfoEmbed(character);
+  }
 
-    return embed;
+  public async handleHelp(): Promise<MessageEmbed> {
+    return EmbedService.getHelpEmbed();
   }
 }
