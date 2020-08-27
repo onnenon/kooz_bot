@@ -9,14 +9,12 @@ const bot = new KoozBot(characterRepo);
 
 const token = process.env.BOT_TOKEN;
 
-const prefix = '#';
-
 bot.client.on('ready', () => {
   console.log('Ready');
 });
 
 bot.client.on('message', async (message) => {
-  if (message.content.startsWith(prefix)) {
+  if (message.content.startsWith(KoozBot.prefix)) {
     const embed = await bot.handlerService.handleMessage(message.content);
     message.channel.send(embed);
   }
