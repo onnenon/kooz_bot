@@ -1,4 +1,4 @@
-export namespace IKoozBot {
+export namespace BotTypes {
   export enum command {
     INFO = '#info',
     HELP = '#help',

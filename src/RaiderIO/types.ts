@@ -12,13 +12,14 @@ export namespace RaiderIoTypes {
     achievement_points: number;
     honorable_kills: number;
     thumbnail_url: string;
-    region: Regions;
+    region: WowTypes.Regions;
     realm: string;
     profile_url: string;
     profile_banner: string;
+    guild?: GuildDTO;
+    gear?: GearDTO;
+    mythtic_plus_scores_by_season?: any[];
   }
-
-  export type Regions = WowTypes.Regions;
 
   export enum CharacterFields {
     gear = 'gear',
@@ -34,5 +35,40 @@ export namespace RaiderIoTypes {
     previous_mythic_plus_ranks = 'previous_mythic_plus_ranks',
     raid_achievement_meta = 'raid_achievement_meta',
     raid_achievement_curve = 'raid_achievement_curve',
+  }
+  interface GuildDTO {
+    name: string;
+    realm: string;
+  }
+
+  interface GearDTO {
+    item_level_equipped: number;
+    item_level_total: number;
+    corruption: {
+      added: number;
+      resisted: number;
+      total: number;
+      cloakRank: number;
+      spells: [];
+    };
+    items: {
+      head: any;
+      neck: any;
+      shoulder: any;
+      back: any;
+      chest: any;
+      waist: any;
+      shirt: any;
+      wrist: any;
+      hands: any;
+      legs: any;
+      feet: any;
+      finger1: any;
+      finger2: any;
+      trinket1: any;
+      trinket2: any;
+      mainhand: any;
+      offhand: any;
+    };
   }
 }

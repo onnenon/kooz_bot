@@ -1,8 +1,8 @@
 import { MessageEmbed } from 'discord.js';
 import CharacterRepo from '../common/repos/character';
-import EmbedService from './embed';
-import { IKoozBot } from '../common/types/bot';
+import { BotTypes } from '../common/types/bot';
 import { WowTypes } from '../common/types/wow';
+import { Embeds } from '../common/embeds';
 
 export default class HandlerService {
   characterRepo: CharacterRepo;
@@ -18,9 +18,9 @@ export default class HandlerService {
     const command = splitMessage.shift();
 
     switch (command) {
-      case IKoozBot.command.INFO:
+      case BotTypes.command.INFO:
         return this.handleCharacterInfo(splitMessage);
-      case IKoozBot.command.HELP:
+      case BotTypes.command.HELP:
         return this.handleHelp();
       default:
         return `Command: **${command}** is invalid, for a list of commands type: **#help**`;
@@ -49,10 +49,10 @@ export default class HandlerService {
       return 'No character returned with given name. Check your spelling and try again.';
     }
 
-    return EmbedService.getCharacterInfoEmbed(character);
+    return new Embeds.CharacterInfoEmbed(character);
   }
 
   public async handleHelp(): Promise<MessageEmbed> {
-    return EmbedService.getHelpEmbed();
+    return new Embeds.HelpEmbed();
   }
 }

@@ -1,4 +1,4 @@
-import { WowTypes } from './wow'
+import { WowTypes } from './wow';
 
 export interface ICharacter {
   name: string;
