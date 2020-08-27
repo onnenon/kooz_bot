@@ -1,15 +1,25 @@
-import Discord from 'discord.js';
 import { config } from 'dotenv';
+import KoozBot from './KoozBot';
+import RaiderIOCharacterRepo from './RaiderIO/repos/character';
 
 config();
 
-const client = new Discord.Client();
-const TOKEN = process.env.BOT_TOKEN;
+const characterRepo = new RaiderIOCharacterRepo();
+const bot = new KoozBot(characterRepo);
 
-console.log(TOKEN);
+const token = process.env.BOT_TOKEN;
 
-client.on('ready', () => {
+const prefix = '#';
+
+bot.client.on('ready', () => {
   console.log('Ready');
 });
 
-client.login(TOKEN);
+bot.client.on('message', async (message) => {
+  if (message.content.startsWith(prefix)) {
+    const embed = await bot.handlerService.handleMessage(message.content);
+    message.channel.send(embed);
+  }
+});
+
+bot.client.login(token);

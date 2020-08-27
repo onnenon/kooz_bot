@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ts-node": "ts-node"
+    "serve": "ts-node --files ./src/index.ts"
   },
   "author": "Stephen Onnen",
   "license": "MIT",
