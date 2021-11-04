@@ -10,7 +10,7 @@ export default class KoozBot {
   public characterRepo: CharacterRepo;
 
   constructor(characterRepo: CharacterRepo) {
-    this.client = new Discord.Client();
+    this.client = new Discord.Client({ intents: ['GUILD_MESSAGES'] });
     this.characterRepo = characterRepo;
     this.handlerService = new HandlerService(this.characterRepo);
 
@@ -23,7 +23,8 @@ export default class KoozBot {
         const response = await this.handlerService.handleMessage(
           message.content
         );
-        if (response) message.channel.send(response);
+        if (response?.message) message.channel.send(response.message);
+        if (response?.embed) message.channel.send({ embeds: [response.embed] });
       }
     });
   }
