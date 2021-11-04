@@ -1,8 +1,8 @@
-import { MessageEmbed } from 'discord.js';
 import CharacterRepo from '../common/repos/character';
 import { BotTypes } from '../common/types/bot';
 import { WowTypes } from '../common/types/wow';
 import { Embeds } from '../common/embeds';
+import { EmbedResponse, MessageResponse } from '../types';
 
 export default class HandlerService {
   characterRepo: CharacterRepo;
@@ -13,7 +13,7 @@ export default class HandlerService {
 
   public async handleMessage(
     message: Readonly<string>
-  ): Promise<MessageEmbed | string | undefined> {
+  ): Promise<MessageResponse | undefined> {
     const splitMessage = message.split(' ');
     const command = splitMessage.shift();
 
@@ -23,20 +23,22 @@ export default class HandlerService {
       case BotTypes.command.HELP:
         return this.handleHelp();
       default:
-        return `Command: **${command}** is invalid, for a list of commands type: **#help**`;
+        return {
+          message: `Command: **${command}** is invalid, for a list of commands type: **#help**`,
+        };
     }
   }
 
   public async handleCharacterInfo(
     splitMessage: Readonly<string[]>
-  ): Promise<MessageEmbed | string> {
+  ): Promise<MessageResponse> {
     const name = splitMessage[0];
     const realm = splitMessage[1];
     const region = splitMessage[2] || WowTypes.Regions.US;
 
     if (splitMessage.length < 2 || splitMessage.length > 3) {
       console.log(splitMessage);
-      return 'Invalid Info command, for correct usage type #help';
+      return { message: 'Invalid Info command, for correct usage type #help' };
     }
 
     const character = await this.characterRepo.getCharacter(
@@ -46,13 +48,16 @@ export default class HandlerService {
     );
 
     if (!character) {
-      return 'No character returned with given name. Check your spelling and try again.';
+      return {
+        message:
+          'No character returned with given name. Check your spelling and try again.',
+      };
     }
 
-    return new Embeds.CharacterInfoEmbed(character);
+    return { embed: new Embeds.CharacterInfoEmbed(character) };
   }
 
-  public async handleHelp(): Promise<MessageEmbed> {
-    return new Embeds.HelpEmbed();
+  public async handleHelp(): Promise<EmbedResponse> {
+    return { embed: new Embeds.HelpEmbed() };
   }
 }

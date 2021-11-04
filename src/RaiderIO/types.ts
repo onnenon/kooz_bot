@@ -18,7 +18,7 @@ export namespace RaiderIoTypes {
     profile_banner: string;
     guild?: GuildDTO;
     gear?: GearDTO;
-    mythtic_plus_scores_by_season?: any[];
+    mythic_plus_scores_by_season?: any[];
   }
 
   export enum CharacterFields {
