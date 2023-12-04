@@ -10,17 +10,17 @@
   "author": "Stephen Onnen",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.5.1",
-    "discord.js": "^14.13.0",
+    "axios": "^1.6.2",
+    "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.5",
-    "@types/node": "^20.8.6",
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.10.3",
     "jest": "^29.7.0",
     "standard": "^17.1.0",
     "ts-jest": "^29.1.1",
-    "typescript": "5.2.2"
+    "typescript": "5.3.2"
   }
 }
