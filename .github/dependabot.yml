@@ -6,6 +6,11 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 5
     groups:
-      all:
+      dev:
         patterns:
-          - "*"
+          - "@types/jest"
+          - "@types/node"
+          - "jest"
+          - "standard"
+          - "ts-jest"
+          - "typescript"
