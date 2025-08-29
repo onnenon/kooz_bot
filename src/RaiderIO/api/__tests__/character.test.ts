@@ -1,8 +1,8 @@
 
 import CharacterAPI from '../character';
 import axios from 'axios';
-import { WowTypes } from '../../../common/types/wow';
-import { RaiderIoTypes } from '../../types';
+import { Regions } from '../../../common/types/wow';
+import { CharacterFields } from '../../types';
 import { describe, it, expect, vi } from 'vitest';
 
 describe('CharacterAPI', () => {
@@ -11,9 +11,9 @@ describe('CharacterAPI', () => {
       const response = { data: Symbol() };
   axios.get = vi.fn().mockResolvedValueOnce(response);
       const name = 'koozie';
-      const region = WowTypes.Regions.US;
+  const region = Regions.US;
       const realm = 'shattered-hand';
-      const fields = ['gear', 'guild'] as RaiderIoTypes.CharacterFields[];
+  const fields = ['gear', 'guild'] as CharacterFields[];
       const expectedURL =
         'https://raider.io/api/v1/characters/profile/?region=us&realm=shattered-hand&name=koozie&fields=gear,guild';
 

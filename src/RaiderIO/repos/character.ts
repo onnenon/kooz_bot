@@ -2,20 +2,20 @@ import CharacterRepo from '../../common/repos/character';
 import { ICharacter } from '../../common/types/character';
 import CharacterAPI from '../api/character';
 import CharacterMapper from '../mappers/character';
-import { WowTypes } from '../../common/types/wow';
-import { RaiderIoTypes } from '../types';
+import { Regions } from '../../common/types/wow';
+import { CharacterFields } from '../types';
 
 export default class RaiderIOCharacterRepo implements CharacterRepo {
   async getCharacter(
     name: string,
     realm: string,
-    region: WowTypes.Regions
+  region: Regions
   ): Promise<ICharacter | undefined> {
     try {
       const charDTO = await CharacterAPI.getCharacter(name, realm, region, [
-        RaiderIoTypes.CharacterFields.gear,
-        RaiderIoTypes.CharacterFields.guild,
-        RaiderIoTypes.CharacterFields.mythic_plus_scores_by_season,
+  CharacterFields.gear,
+  CharacterFields.guild,
+  CharacterFields.mythic_plus_scores_by_season,
       ]);
       console.log(charDTO);
 
@@ -23,6 +23,7 @@ export default class RaiderIOCharacterRepo implements CharacterRepo {
         return CharacterMapper.mapDTOtoICharacter(charDTO);
       }
     } catch (err) {
+      console.log(err)
       return undefined;
     }
   }

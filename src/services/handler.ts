@@ -1,6 +1,6 @@
 import CharacterRepo from '../common/repos/character';
-import { BotTypes } from '../common/types/bot';
-import { WowTypes } from '../common/types/wow';
+import { command as Command } from '../common/types/bot';
+import { Regions } from '../common/types/wow';
 import { Embeds } from '../common/embeds';
 import { EmbedResponse, MessageResponse } from '../types';
 
@@ -15,16 +15,16 @@ export default class HandlerService {
     message: Readonly<string>
   ): Promise<MessageResponse | undefined> {
     const splitMessage = message.split(' ');
-    const command = splitMessage.shift();
+    const cmd = splitMessage.shift();
 
-    switch (command) {
-      case BotTypes.command.INFO:
+    switch (cmd) {
+      case Command.INFO:
         return this.handleCharacterInfo(splitMessage);
-      case BotTypes.command.HELP:
+      case Command.HELP:
         return this.handleHelp();
       default:
         return {
-          message: `Command: **${command}** is invalid, for a list of commands type: **#help**`,
+          message: `Command: **${cmd}** is invalid, for a list of commands type: **#help**`,
         };
     }
   }
@@ -34,7 +34,7 @@ export default class HandlerService {
   ): Promise<MessageResponse> {
     const name = splitMessage[0];
     const realm = splitMessage[1];
-    const region = splitMessage[2] || WowTypes.Regions.US;
+  const region = splitMessage[2] || Regions.US;
 
     if (splitMessage.length < 2 || splitMessage.length > 3) {
       console.log(splitMessage);

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { RaiderIoTypes } from '../types';
-import { WowTypes } from '../../common/types/wow';
+import { CharacterDTO, CharacterFields } from '../types';
+import { Regions } from '../../common/types/wow';
 
 export default class CharacterAPI {
   static baseURL = `https://raider.io/api/v1/characters/profile/`;
@@ -8,9 +8,9 @@ export default class CharacterAPI {
   static async getCharacter(
     name: string,
     realm: string,
-    region = WowTypes.Regions.US,
-    fields?: RaiderIoTypes.CharacterFields[]
-  ): Promise<RaiderIoTypes.CharacterDTO> {
+  region = Regions.US,
+  fields?: CharacterFields[]
+  ): Promise<CharacterDTO> {
     let url = `${CharacterAPI.baseURL}?region=${region}&realm=${realm}&name=${name}`;
 
     if (fields) {

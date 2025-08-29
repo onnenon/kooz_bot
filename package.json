@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Discord bot for Raider.io",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
-  "test": "vitest run",
-  "test:ui": "vitest --ui",
-  "serve": "bun src/index.ts",
-  "lint": "standard --fix 'src/**/*.ts'"
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "serve": "bun src/index.ts",
+    "lint": "eslint 'src/**/*.ts' --fix"
   },
   "author": "Stephen Onnen",
   "license": "MIT",
@@ -20,9 +21,11 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/node": "^22.14.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
     "@vitest/coverage-istanbul": "^3.2.4",
     "@vitest/ui": "^3.2.4",
-    "standard": "^17.1.2",
+    "eslint": "^9.34.0",
     "typescript": "5.8.3",
     "vitest": "^3.2.4"
   },

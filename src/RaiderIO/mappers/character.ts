@@ -1,9 +1,9 @@
 import { ICharacter } from '../../common/types/character';
-import { RaiderIoTypes } from '../types';
+import { CharacterDTO } from '../types';
 
 export default class CharacterMapper {
   public static mapDTOtoICharacter(
-    dto: Readonly<RaiderIoTypes.CharacterDTO>
+  dto: Readonly<CharacterDTO>
   ): ICharacter {
     return {
       name: dto.name,
