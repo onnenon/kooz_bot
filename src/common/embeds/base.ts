@@ -1,11 +1,11 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
-export default class BaseEmbed extends MessageEmbed {
+export default class BaseEmbed extends EmbedBuilder {
   constructor(title: string) {
-    super();
+  super();
     this.setTitle(title);
     this.setColor('#ff8d4f');
-    this.setFooter('Doob Bot');
+  this.setFooter({ text: 'Doob Bot' });
     this.setTimestamp();
   }
 }

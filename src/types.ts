@@ -1,9 +1,9 @@
-import { MessageEmbed } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 
 export type MessageResponse = EmbedResponse | StringResponse;
 
 export type EmbedResponse = {
-  embed: MessageEmbed;
+  embed: EmbedBuilder;
   message?: undefined;
 };
 

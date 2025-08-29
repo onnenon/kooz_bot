@@ -1,13 +1,15 @@
+
 import CharacterAPI from '../character';
 import axios from 'axios';
 import { WowTypes } from '../../../common/types/wow';
 import { RaiderIoTypes } from '../../types';
+import { describe, it, expect, vi } from 'vitest';
 
 describe('CharacterAPI', () => {
   describe('getCharacter', () => {
     it('should get character data from Raider.io api', async () => {
       const response = { data: Symbol() };
-      axios.get = jest.fn().mockResolvedValueOnce(response);
+  axios.get = vi.fn().mockResolvedValueOnce(response);
       const name = 'koozie';
       const region = WowTypes.Regions.US;
       const realm = 'shattered-hand';
